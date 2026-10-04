@@ -67,6 +67,28 @@ MinIO, YouTube). Each cost real time once. Most apply to any stack.
 - Command-safety hooks in AI coding tools can block harmless commands by keyword (a script called
   "restore" was mistaken for `git restore`). Name scripts to avoid destructive-sounding words.
 
+## Going fully automatic (no human review)
+
+Learned when the same channel moved to one AI-written Short per day with no review (October 2026):
+
+- **Have the AI check its own story.** A second, separate call acting as a strict fact-checker caught real errors
+  (claims the cited sources don't make) on the first live run. Feed the problems back and let it rewrite; allow
+  about 5 tries, because a strict checker rejects several drafts in a row.
+- **AI replies aren't always clean JSON.** Read the first complete JSON object and ignore anything after it.
+- **Free AI tiers get busy.** "503 high demand" on every model at once happened on day one: wait (30 s, then 90 s)
+  and go round the models again before failing the run.
+- **Free tiers don't cover everything.** On a free Gemini key, text and speech worked, but image, video (Veo) and
+  music (Lyria) models were listed and still answered `limit: 0`. Test one real request before designing around a model.
+- **Google Flow has no API**: it's a website. Automating it means a logged-in browser robot (fragile, against the
+  terms, PC must stay on). Use the underlying APIs or another tool.
+- **Free, consistent "animation" without AI video:** paper-cutout motion (flat drawings that bounce, slide, tilt and
+  shake, done by FFmpeg) keeps every frame exactly on-style and costs nothing.
+- **Duplicate-post safety:** never retry an upload call; mark your automation's uploads (a hidden tag) so your own
+  manual uploads on the same day don't count as "already posted".
+- **Credentials:** AI coding tools may refuse to export saved logins for you (sensible). Prepare a small script that
+  copies them into GitHub secrets without printing them, and run it yourself. Pushing a workflow file needs a
+  GitHub login with the `workflow` permission (`gh auth refresh -s workflow`).
+
 ## Process
 
 - Manual buttons beat schedules at first: the owner pressed "make" and "upload", watched each video,
